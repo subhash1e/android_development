@@ -1,0 +1,77 @@
+Android ListView is a ViewGroup
+which is used to display the list of items
+in multiple rows and contains an adapter
+which automatically inserts the items into the list.
+
+The main purpose of the adapter is
+to fetch data from an array or database 
+and insert each item that placed into 
+the list for the desired result.
+
+So, it is main source to pull
+data from strings.xml file
+which contains all the required 
+strings in Kotlin or xml files.
+Android Adapter
+
+Adapter holds the data fetched from
+an array and iterates through each item
+in data set and generates the respective
+views for each item of the list. So, 
+
+we can say it act as an intermediate between
+the data sources and adapter views such as ListView, Gridview.
+
+Different Types of Adapter –
+
+    ArrayAdapter: It always accepts an Array or List as input. We can store the list items in the strings.xml file also.
+    CursorAdapter: It always accepts an instance of cursor as an input means
+    SimpleAdapter: It mainly accepts a static data defined in the resources like array or database.
+    BaseAdapter: It is a generic implementation for all three adapter types and it can be used in the views according to our requirements.
+
+Now, we going to create an android application named as ListViewInKotlin using an arrayadapter. Open an activity_main.xml file from \res\layout path and write the code like as shown below.
+activity_main.xml file
+
+In this file, we declare the LisitView within LinearLayout and set its attributes. Later, we will access the ListView in Kotlin file using the id.
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ListView
+        android:id="@+id/userlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+</LinearLayout>
+MainActivity.kt
+
+When we have created layout,
+we need to load the XML layout resource 
+from our activity onCreate() callback method
+and access the UI element form the XML using findViewById.
+
+import android.widget.ArrayAdapter
+import android.widget.ListView
+class MainActivity : AppCompatActivity() {
+  
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+  
+        // use arrayadapter and define an array
+        val arrayAdapter: ArrayAdapter<*>
+        val users = arrayOf(
+            "Virat Kohli", "Rohit Sharma", "Steve Smith",
+            "Kane Williamson", "Ross Taylor"
+        )
+          
+        // access the listView from xml file
+        var mListView = findViewById<ListView>(R.id.userlist)
+        arrayAdapter = ArrayAdapter(this,
+            android.R.layout.simple_list_item_1, users)
+        mListView.adapter = arrayAdapter
+    }
+}
