@@ -8,7 +8,7 @@ fun main(){
     for(j in i downTo 1){
       if(arr[j-1] < arr[j])break
       else arr[j-1] = arr[j].also({arr[j]=arr[j-1]})
-      // we are simply transversing to each index and putting it to its right pos 
+      // we are simply transversing to each index and putting it to its correct pos 
       // in already left sorted array
       // start from [3] sorted [4,2,1] unsorted
       // then put 4 in right place by comparing [3,4] [2,1]
